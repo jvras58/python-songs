@@ -1,6 +1,8 @@
 """Serviço de gerenciamento de som."""
 
 import logging
+import os
+import sys
 from typing import Dict, Set
 
 from pygame import mixer
@@ -21,6 +23,11 @@ class SoundService:
         self.volume = volume
         self.loaded_sounds: Dict[str, mixer.Sound] = {}
         self._initialized = False
+        # Determina o caminho base para arquivos de dados
+        if hasattr(sys, '_MEIPASS'):
+            self.base_path = sys._MEIPASS
+        else:
+            self.base_path = os.getcwd()
 
     def initialize(self) -> None:
         """Inicializa o mixer do pygame."""
@@ -58,7 +65,8 @@ class SoundService:
         # Carrega cada som
         for sound_path in all_sounds:
             try:
-                sound = mixer.Sound(sound_path)
+                full_path = os.path.join(self.base_path, sound_path)
+                sound = mixer.Sound(full_path)
                 sound.set_volume(self.volume)
                 self.loaded_sounds[sound_path] = sound
                 logger.info(f"Loaded sound: {sound_path}")
