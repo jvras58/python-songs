@@ -9,6 +9,7 @@ dependencies = [
     "numpy>=1.26.4",
     "opencv-python>=4.11.0.86",
     "pygame>=2.6.1",
+    "pyinstaller>=6.17.0",
     "pytest>=8.4.2",
     "pytest-cov>=7.0.0",
 ]
