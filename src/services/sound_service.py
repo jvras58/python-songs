@@ -24,7 +24,7 @@ class SoundService:
         self.loaded_sounds: Dict[str, mixer.Sound] = {}
         self._initialized = False
         # Determina o caminho base para arquivos de dados
-        if hasattr(sys, '_MEIPASS'):
+        if hasattr(sys, "_MEIPASS"):
             self.base_path = sys._MEIPASS
         else:
             self.base_path = os.getcwd()
